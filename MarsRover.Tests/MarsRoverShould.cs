@@ -48,5 +48,15 @@ namespace MarsRover.Tests
             
             Assert.Equal($"0:0:{direction}", position);
         }
+
+        [Theory]
+        [InlineData("MMMMMMMMMM", "0:0:N")]
+        [InlineData("LMMMM", "6:0:W")]
+        public void ten_moves_returns_back_to_start(string command, string expected)
+        {
+            var position = _marsRover.execute(command);
+            
+            Assert.Equal(expected, position);
+        }
     }
 }

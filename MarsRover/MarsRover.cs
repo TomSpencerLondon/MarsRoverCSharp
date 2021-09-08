@@ -6,11 +6,12 @@ namespace MarsRover
     {
         private readonly Grid _grid;
         private Direction _direction;
-
+        private Position _position;
         public MarsRover(Grid grid)
         {
             _grid = grid;
             _direction = Direction.N;
+            _position = new Position(0, 0);
         }
 
         public String execute(string input)
@@ -19,17 +20,26 @@ namespace MarsRover
             Console.WriteLine(commands);
             foreach (var c in commands)
             {
-                
-                if (c.Equals('R'))
-                {
-                    _direction = turnRight();
-                }else if (c.Equals('L'))
-                {
-                    _direction = turnLeft();
-                }
+                follow(c);
             }
             
-            return $"0:0:{_direction.ToString()}";
+            return $"{_position.X}:{_position.Y}:{_direction.ToString()}";
+        }
+
+        private void follow(char c)
+        {
+            if (c.Equals('R'))
+            {
+                _direction = turnRight();
+            }
+            else if (c.Equals('L'))
+            {
+                _direction = turnLeft();
+            }
+            else if (c.Equals('M'))
+            {
+                _position = _grid.move(_position, _direction);
+            }
         }
 
         private Direction turnLeft()
