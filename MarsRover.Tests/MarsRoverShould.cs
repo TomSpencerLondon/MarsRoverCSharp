@@ -26,6 +26,9 @@ namespace MarsRover.Tests
         [Theory]
         [InlineData("R", "E")]
         [InlineData("RR", "S")]
+        [InlineData("RRR", "W")]
+        [InlineData("RRRR", "N")]
+        [InlineData("RRRRR", "E")]
         public void L_turns_leaves_0_0_East(string command, string direction)
         {
             var position = _marsRover.execute(command);

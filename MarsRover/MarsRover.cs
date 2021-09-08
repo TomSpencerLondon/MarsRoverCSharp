@@ -22,27 +22,25 @@ namespace MarsRover
                 
                 if (c.Equals('R'))
                 {
-                    _direction = turn();
+                    _direction = turnRight();
                 }
             }
             
             return $"0:0:{_direction.ToString()}";
         }
 
-        private Direction turn()
+        private Direction turnRight()
         {
-            if (_direction == Direction.N)
+            switch (_direction)
             {
-                return Direction.E;
-            }else if (_direction == Direction.E)
-            {
-                return Direction.S;
-            }else if (_direction == Direction.S)
-            {
-                return Direction.W;
-            }else
-            {
-                return Direction.W;
+                case Direction.N:
+                    return Direction.E;
+                case Direction.E:
+                    return Direction.S;
+                case Direction.S:
+                    return Direction.W;
+                default:
+                    return Direction.N;
             }
         }
     }
