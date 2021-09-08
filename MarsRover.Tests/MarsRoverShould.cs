@@ -23,12 +23,13 @@ namespace MarsRover.Tests
             Assert.Equal("0:0:N", position);
         }
 
-        [Fact]
-        public void L_turns_leaves_0_0_East()
+        [Theory]
+        [InlineData("R", "E")]
+        public void L_turns_leaves_0_0_East(string command, string direction)
         {
-            var position = _marsRover.execute("R");
+            var position = _marsRover.execute(command);
             
-            Assert.Equal("0:0:E", position);
+            Assert.Equal($"0:0:{direction}", position);
         }
     }
 }
