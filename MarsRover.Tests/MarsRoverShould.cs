@@ -29,7 +29,20 @@ namespace MarsRover.Tests
         [InlineData("RRR", "W")]
         [InlineData("RRRR", "N")]
         [InlineData("RRRRR", "E")]
-        public void L_turns_leaves_0_0_East(string command, string direction)
+        public void R_turns_leaves_0_0_East(string command, string direction)
+        {
+            var position = _marsRover.execute(command);
+            
+            Assert.Equal($"0:0:{direction}", position);
+        }
+
+        [Theory]
+        [InlineData("L", "W")]
+        [InlineData("LL", "S")]
+        [InlineData("LLL", "E")]
+        [InlineData("LLLL", "N")]
+        [InlineData("LLLLL", "W")]
+        public void L_turns_changes_direction(string command, string direction)
         {
             var position = _marsRover.execute(command);
             
