@@ -14,7 +14,7 @@ namespace MarsRover.Tests
             _marsRover = new MarsRover(grid);
         }
 
-
+        
         [Fact]
         public void empty_command_leaves_0_0_facing_north()
         {
@@ -25,6 +25,7 @@ namespace MarsRover.Tests
 
         [Theory]
         [InlineData("R", "E")]
+        [InlineData("RR", "S")]
         public void L_turns_leaves_0_0_East(string command, string direction)
         {
             var position = _marsRover.execute(command);
